@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: 'https://localhost:3333' || 'podcastr-alpha-lime.vercel.app'
+  baseURL: 'http://localhost:3333' || 'https://my-json-server.typicode.com/pereirafi/podcastrnext'
 })
