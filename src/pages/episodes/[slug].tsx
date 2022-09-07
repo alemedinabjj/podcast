@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import styles from './episode.module.scss'
@@ -5,28 +6,20 @@ import React from 'react'
 import { api } from '../../services/api'
 import { ConvertDurationToTimeString } from '../../utils/ConvertDurationToTimeString'
 import Image from 'next/image'
-
-type Episode = {
-  id: string
-  title: string
-  members: string
-  thumbnail: string
-  description: string
-  duration: number
-  durationAsString: string
-  url: string
-  publishedAt: string
-}
-
-type HomeProps = {
-  episode: Episode
-}
+import { HomeProps } from './types/types'
+import { usePlayer } from '../../contexts/PlayerContext'
+import Head from 'next/head'
 
 const Episode = ({ episode }: HomeProps) => {
+  const { play } = usePlayer()
+
   const router = useRouter()
 
   return (
     <div className={styles.episode}>
+      <Head>
+        <title>{episode.title}| Podcastr</title>
+      </Head>
       <div className={styles.thumbnailContainer}>
         <button type="button" onClick={() => router.back()}>
           <img src="/arrow-left.svg" alt="Voltar" />
@@ -38,7 +31,7 @@ const Episode = ({ episode }: HomeProps) => {
           src={episode.thumbnail}
           alt={episode.title}
         />
-        <button type="button">
+        <button type="button" onClick={() => play(episode)}>
           <img src="/play.svg" alt="Tocar episódio" />
         </button>
       </div>

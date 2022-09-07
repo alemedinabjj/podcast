@@ -1,6 +1,10 @@
 .wrapper {
   display:flex;
 
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
+
 
   main {
     flex: 1;
