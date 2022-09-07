@@ -6,9 +6,24 @@ import React from 'react'
 import { api } from '../../services/api'
 import { ConvertDurationToTimeString } from '../../utils/ConvertDurationToTimeString'
 import Image from 'next/image'
-import { HomeProps } from './types/types'
 import { usePlayer } from '../../contexts/PlayerContext'
 import Head from 'next/head'
+
+type Episode = {
+  id: string
+  title: string
+  members: string
+  thumbnail: string
+  description: string
+  duration: number
+  durationAsString: string
+  url: string
+  publishedAt: string
+}
+
+ type HomeProps = {
+  episode: Episode
+}
 
 const Episode = ({ episode }: HomeProps) => {
   const { play } = usePlayer()

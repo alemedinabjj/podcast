@@ -12,7 +12,23 @@ import { ConvertDurationToTimeString } from '../utils/ConvertDurationToTimeStrin
 import styles from './home.module.scss'
 import { usePlayer } from '../contexts/PlayerContext'
 
-import { HomeProps } from './types/types'
+ type Episode = {
+  id: string
+  title: string
+  members: string
+  thumbnail: string
+  description: string
+  duration: number
+  durationAsString: string
+  url: string
+  publishedAt: string
+}
+
+  type HomeProps = {
+  latestEpisodes: Episode[]
+  allEpisodes: Episode[]
+}
+
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
   const { playList, isPlaying, currentEpisodeIndex } = usePlayer()
